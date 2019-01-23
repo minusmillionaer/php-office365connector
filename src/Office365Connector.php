@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * This file is part of the kernpunkt/office365connector library
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @copyright Copyright (c) Giuliano Schindler <giuliano.schindler@kernpunkt.de>
+ * @license https://opensource.org/licenses/gpl-license GNU
+ * @link https://kernpunkt.com Website
+ */
 namespace kernpunkt\OPS;
 
 /**
@@ -19,11 +28,12 @@ class Office365Connector
 
     /**
      * Office365Connector constructor.
-     * @param $_tenantId
-     * @param $_clientId
-     * @param $_clientSecret
-     * @param $_resource
-     * @param $_grantType
+     *
+     * @param string $_tenantId     Office 365 tenant ID unique identifier (GUID)
+     * @param uuid   $_clientId     Microsoft Azure Active Directory App Id
+     * @param string $_clientSecret Microsoft Azure Active Directory App Secret
+     * @param string $_resource     The App ID URI of the target web API
+     * @param string $_grantType    Must be authorization_code for the auth code flow
      */
     public function __construct($_tenantId, $_clientId, $_clientSecret, $_resource, $_grantType)
     {
@@ -49,6 +59,8 @@ class Office365Connector
     }
 
     /**
+     * Get all groups in this organisation
+     *
      * @return object
      */
     public function getGroups(): object
@@ -65,7 +77,10 @@ class Office365Connector
     }
 
     /**
-     * @param $groupId
+     * Get all members of this group
+     *
+     * @param uuid $groupId Azure AD uuid of group
+     *
      * @return object
      */
     public function getGroupUsers($groupId): object
@@ -82,6 +97,8 @@ class Office365Connector
     }
 
     /**
+     * Get all users in this organisation
+     *
      * @return object
      */
     public function getUsers(): object
@@ -98,7 +115,10 @@ class Office365Connector
     }
 
     /**
-     * @param $userId
+     * Get user details for this user
+     *
+     * @param uuid $userId Azure AD uuid of User
+     *
      * @return object
      */
     public function getUserInfo($userId): object
