@@ -35,7 +35,7 @@ class Office365Connector
 
   }
 
-  public function getGroups()
+  public function getGroups() : object
   {
     $responseGraph = self::$client->request('GET', 'https://graph.microsoft.com/v1.0/groups/',[
       'headers' => [
@@ -48,7 +48,7 @@ class Office365Connector
     
   }
 
-  public function getGroupUsers($groupId)
+  public function getGroupUsers($groupId) : object
   {
     $responseGraph = self::$client->request('GET', 'https://graph.microsoft.com/v1.0/groups/'.$groupId.'/members',[
       'headers' => [
@@ -60,7 +60,7 @@ class Office365Connector
     return json_decode($responseGraph->getBody());
   }
 
-  public function getUsers()
+  public function getUsers() : object
   {
     $responseGraph = self::$client->request('GET', 'https://graph.microsoft.com/v1.0/users/',[
       'headers' => [
@@ -73,7 +73,7 @@ class Office365Connector
 
   }
 
-  public function getUserInfo($userId)
+  public function getUserInfo($userId) : object
   {
     $responseGraph = self::$client->request('GET', 'https://graph.microsoft.com/v1.0/users/'.$userId,[
       'headers' => [
