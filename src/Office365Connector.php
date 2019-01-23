@@ -34,6 +34,8 @@ class Office365Connector
      * @param string $_clientSecret Microsoft Azure Active Directory App Secret
      * @param string $_resource     The App ID URI of the target web API
      * @param string $_grantType    Must be authorization_code for the auth code flow
+     *
+     * @throws \GuzzleHttp\Exception\BadResponseException
      */
     public function __construct($_tenantId, $_clientId, $_clientSecret, $_resource, $_grantType)
     {
@@ -62,6 +64,8 @@ class Office365Connector
      * Get all groups in this organisation
      *
      * @return object
+     *
+     * @throws \GuzzleHttp\Exception\BadResponseException
      */
     public function getGroups(): object
     {
@@ -82,6 +86,8 @@ class Office365Connector
      * @param uuid $groupId Azure AD uuid of group
      *
      * @return object
+     *
+     * @throws \GuzzleHttp\Exception\BadResponseException
      */
     public function getGroupUsers($groupId): object
     {
@@ -100,6 +106,8 @@ class Office365Connector
      * Get all users in this organisation
      *
      * @return object
+     *
+     * @throws \GuzzleHttp\Exception\BadResponseException
      */
     public function getUsers(): object
     {
@@ -120,6 +128,8 @@ class Office365Connector
      * @param uuid $userId Azure AD uuid of User
      *
      * @return object
+     *
+     * @throws \GuzzleHttp\Exception\BadResponseException
      */
     public function getUserInfo($userId): object
     {
