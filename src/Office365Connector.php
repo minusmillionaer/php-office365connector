@@ -9,42 +9,42 @@ namespace kernpunkt\OPS;
 class Office365Connector
 {
 
-    private static $tenantId;
-    private static $clientId;
-    private static $clientSecret;
-    private static $resource;
-    private static $grantType;
-    private static $accessToken;
-    private static $client;
+    private static $_tenantId;
+    private static $_clientId;
+    private static $_clientSecret;
+    private static $_resource;
+    private static $_grantType;
+    private static $_accessToken;
+    private static $_client;
 
     /**
      * Office365Connector constructor.
-     * @param $tenantId
-     * @param $clientId
-     * @param $clientSecret
-     * @param $resource
-     * @param $grantType
+     * @param $_tenantId
+     * @param $_clientId
+     * @param $_clientSecret
+     * @param $_resource
+     * @param $_grantType
      */
-    public function __construct($tenantId, $clientId, $clientSecret, $resource, $grantType)
+    public function __construct($_tenantId, $_clientId, $_clientSecret, $_resource, $_grantType)
     {
-        self::$tenantId = $tenantId;
-        self::$clientId = $clientId;
-        self::$clientSecret = $clientSecret;
-        self::$resource = $resource;
-        self::$grantType = $grantType;
+        self::$_tenantId = $_tenantId;
+        self::$_clientId = $_clientId;
+        self::$_clientSecret = $_clientSecret;
+        self::$_resource = $_resource;
+        self::$_grantType = $_grantType;
 
-        self::$client = new \GuzzleHttp\Client();
-        $responseLogin = self::$client->request('POST',
-            'https://login.microsoftonline.com/' . self::$tenantId . '/oauth2/token', [
+        self::$_client = new \GuzzleHttp\Client();
+        $responseLogin = self::$_client->request('POST',
+            'https://login.microsoftonline.com/' . self::$_tenantId . '/oauth2/token', [
                 'form_params' => [
-                    'client_id' => self::$clientId,
-                    'client_secret' => self::$clientSecret,
-                    'resource' => self::$resource,
-                    'grant_type' => self::$grantType,
+                    'client_id' => self::$_clientId,
+                    'client_secret' => self::$_clientSecret,
+                    'resource' => self::$_resource,
+                    'grant_type' => self::$_grantType,
                     ]
             ]);
 
-        self::$accessToken = json_decode($responseLogin->getBody())->access_token;
+        self::$_accessToken = json_decode($responseLogin->getBody())->access_token;
 
     }
 
@@ -53,9 +53,9 @@ class Office365Connector
      */
     public function getGroups(): object
     {
-        $responseGraph = self::$client->request('GET', 'https://graph.microsoft.com/v1.0/groups/', [
+        $responseGraph = self::$_client->request('GET', 'https://graph.microsoft.com/v1.0/groups/', [
             'headers' => [
-                'Authorization' => 'Bearer ' . self::$accessToken,
+                'Authorization' => 'Bearer ' . self::$_accessToken,
                 'Content-Type' => 'application/x-www-form-urlencoded',
             ],
         ]);
@@ -70,10 +70,10 @@ class Office365Connector
      */
     public function getGroupUsers($groupId): object
     {
-        $responseGraph = self::$client->request('GET',
+        $responseGraph = self::$_client->request('GET',
             'https://graph.microsoft.com/v1.0/groups/' . $groupId . '/members', [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . self::$accessToken,
+                    'Authorization' => 'Bearer ' . self::$_accessToken,
                     'Content-Type' => 'application/x-www-form-urlencoded',
                 ],
             ]);
@@ -86,9 +86,9 @@ class Office365Connector
      */
     public function getUsers(): object
     {
-        $responseGraph = self::$client->request('GET', 'https://graph.microsoft.com/v1.0/users/', [
+        $responseGraph = self::$_client->request('GET', 'https://graph.microsoft.com/v1.0/users/', [
             'headers' => [
-                'Authorization' => 'Bearer ' . self::$accessToken,
+                'Authorization' => 'Bearer ' . self::$_accessToken,
                 'Content-Type' => 'application/x-www-form-urlencoded',
             ],
         ]);
@@ -103,9 +103,9 @@ class Office365Connector
      */
     public function getUserInfo($userId): object
     {
-        $responseGraph = self::$client->request('GET', 'https://graph.microsoft.com/v1.0/users/' . $userId, [
+        $responseGraph = self::$_client->request('GET', 'https://graph.microsoft.com/v1.0/users/' . $userId, [
             'headers' => [
-                'Authorization' => 'Bearer ' . self::$accessToken,
+                'Authorization' => 'Bearer ' . self::$_accessToken,
                 'Content-Type' => 'application/x-www-form-urlencoded',
             ],
         ]);
