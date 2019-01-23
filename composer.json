@@ -1,0 +1,21 @@
+{
+    "name": "kernpunkt/office365connector",
+    "description": "Client to connect to microsoft azure ad",
+    "type": "library",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Giuliano Schindler",
+            "email": "giuliano.schindler@kernpunkt.de"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "kernpunkt\\OPS\\": "src/"
+        }
+    }
+}
