@@ -82,7 +82,7 @@ class Office365Connector
             ]
         );
 
-        return json_decode($responseGraph->getBody());
+        return json_decode($responseGraph->getBody())->value;
 
     }
 
@@ -106,7 +106,7 @@ class Office365Connector
             ]
         );
 
-        return json_decode($responseGraph->getBody());
+        return json_decode($responseGraph->getBody())->value;
     }
 
     /**
@@ -127,7 +127,7 @@ class Office365Connector
             ]
         );
 
-        return json_decode($responseGraph->getBody());
+        return json_decode($responseGraph->getBody())->value;
 
     }
 
