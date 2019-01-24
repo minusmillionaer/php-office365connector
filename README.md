@@ -15,7 +15,7 @@ Add this to your "composer.json"
 
 Now you can install "kernpunkt/office365connector" via composer
 ```bash
-php composer.phar require "kernpunkt/office365connector": "^1.0"
+php composer.phar require "kernpunkt/office365connector": "dev-master#1.0"
 ```
 
 ## Use
