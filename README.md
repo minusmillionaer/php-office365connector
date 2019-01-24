@@ -3,13 +3,13 @@ kernpunkt OPS Office365Connector Client via Graph-API
 
 ## Installing kernpunkt OPS Office365Connector via composer
 
-Add this to your "composer.json"
+Add this to your "composer.json" and load your packages via kernpunkt satis composer proxy
 ```json
 "repositories": [
         {
-            "url": "ssh://git@stash.kernarea.de:7999/ops/composer-office365connector.git",
-            "type": "git"
-        },
+            "type": "composer",
+            "url": "https://composer.kernarea.de"
+        }
     ],
 ```
 
