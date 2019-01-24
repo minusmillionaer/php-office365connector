@@ -71,7 +71,7 @@ class Office365Connector
      *
      * @throws \GuzzleHttp\Exception\BadResponseException
      */
-    public function getGroups(): object
+    public function getGroups(): array
     {
         $responseGraph = self::$_client->request(
             'GET', 'https://graph.microsoft.com/v1.0/groups/?$top='.self::$_top, [
@@ -95,7 +95,7 @@ class Office365Connector
      *
      * @throws \GuzzleHttp\Exception\BadResponseException
      */
-    public function getGroupUsers($groupId): object
+    public function getGroupUsers($groupId): array
     {
         $responseGraph = self::$_client->request(
             'GET', 'https://graph.microsoft.com/v1.0/groups/'.$groupId.'/members?$top='.self::$_top, [
@@ -116,7 +116,7 @@ class Office365Connector
      *
      * @throws \GuzzleHttp\Exception\BadResponseException
      */
-    public function getUsers(): object
+    public function getUsers(): array
     {
         $responseGraph = self::$_client->request(
             'GET', 'https://graph.microsoft.com/v1.0/users/?$top='.self::$_top, [
