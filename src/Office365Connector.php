@@ -48,6 +48,7 @@ class Office365Connector
         self::$_top = $_top;
 
         self::$_client = new \GuzzleHttp\Client();
+
         $responseLogin = self::$_client->request(
             'POST', 'https://login.microsoftonline.com/'.self::$_tenantId.'/oauth2/token', [
                 'form_params' => [
