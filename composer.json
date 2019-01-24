@@ -10,7 +10,7 @@
             "email": "giuliano.schindler@kernpunkt.de"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": "^7.1.0",
         "ext-json": "*",
