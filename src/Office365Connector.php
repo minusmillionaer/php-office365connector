@@ -23,6 +23,7 @@ class Office365Connector
     private static $_clientSecret;
     private static $_resource;
     private static $_grantType;
+    private static $_top;
     private static $_accessToken;
     private static $_client;
 
@@ -37,13 +38,14 @@ class Office365Connector
      *
      * @throws \GuzzleHttp\Exception\BadResponseException
      */
-    public function __construct($_tenantId, $_clientId, $_clientSecret, $_resource, $_grantType)
+    public function __construct($_tenantId, $_clientId, $_clientSecret, $_resource, $_grantType, $_top = '500')
     {
         self::$_tenantId = $_tenantId;
         self::$_clientId = $_clientId;
         self::$_clientSecret = $_clientSecret;
         self::$_resource = $_resource;
         self::$_grantType = $_grantType;
+        self::$_top = $_top;
 
         self::$_client = new \GuzzleHttp\Client();
         $responseLogin = self::$_client->request(
@@ -71,7 +73,7 @@ class Office365Connector
     public function getGroups(): object
     {
         $responseGraph = self::$_client->request(
-            'GET', 'https://graph.microsoft.com/v1.0/groups/', [
+            'GET', 'https://graph.microsoft.com/v1.0/groups/?$top='.self::$_top, [
                 'headers' => [
                     'Authorization' => 'Bearer ' . self::$_accessToken,
                     'Content-Type' => 'application/x-www-form-urlencoded',
@@ -95,7 +97,7 @@ class Office365Connector
     public function getGroupUsers($groupId): object
     {
         $responseGraph = self::$_client->request(
-            'GET', 'https://graph.microsoft.com/v1.0/groups/'.$groupId.'/members', [
+            'GET', 'https://graph.microsoft.com/v1.0/groups/'.$groupId.'/members?$top='.self::$_top, [
                 'headers' => [
                     'Authorization' => 'Bearer ' . self::$_accessToken,
                     'Content-Type' => 'application/x-www-form-urlencoded',
@@ -116,7 +118,7 @@ class Office365Connector
     public function getUsers(): object
     {
         $responseGraph = self::$_client->request(
-            'GET', 'https://graph.microsoft.com/v1.0/users/', [
+            'GET', 'https://graph.microsoft.com/v1.0/users/?$top='.self::$_top, [
                 'headers' => [
                     'Authorization' => 'Bearer ' . self::$_accessToken,
                     'Content-Type' => 'application/x-www-form-urlencoded',
