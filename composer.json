@@ -1,6 +1,6 @@
 {
     "name": "kernpunkt/office365connector",
-    "description": "Client to connect to microsoft azure ad",
+    "description": "A simple wrapper for Microsoft Graph",
     "keywords": ["kernpunkt", "office365", "ops"],
     "type": "library",
     "license": "GNU",
